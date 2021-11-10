@@ -1,5 +1,5 @@
 /* globals describe, test, expect */
-const generate = require('../helpers/generateParam')
+const generateParam = require('../helpers/generateParam')
 const LoginRouter = require('./loginRouter')
 const MissingParamError = require('../helpers/missingParamError')
 const UnauthorizedError = require('../helpers/unauthorizedError')
@@ -9,9 +9,11 @@ const makeSut = () => {
     auth (email, password) {
       this.email = email
       this.password = password
+      return this.accessToken
     }
   }
   const authUseCaseSpy = new AuthUseCaseSpy()
+  authUseCaseSpy.accessToken = generateParam()
   const sut = new LoginRouter(authUseCaseSpy)
   return {
     sut,
@@ -24,7 +26,7 @@ describe('Login Router', () => {
     const { sut } = makeSut() // sut === system under test
     const httpRequest = {
       body: {
-        password: generate()
+        password: generateParam()
       }
     }
     const httpResponse = sut.route(httpRequest)
@@ -36,7 +38,7 @@ describe('Login Router', () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
-        email: generate()
+        email: generateParam()
       }
     }
     const httpResponse = sut.route(httpRequest)
@@ -60,8 +62,8 @@ describe('Login Router', () => {
     const { sut, authUseCaseSpy } = makeSut()
     const httpRequest = {
       body: {
-        email: generate(),
-        password: generate()
+        email: generateParam(),
+        password: generateParam()
       }
     }
     sut.route(httpRequest)
@@ -69,12 +71,13 @@ describe('Login Router', () => {
     expect(authUseCaseSpy.password).toBe(httpRequest.body.password)
   })
 
-  test('Should return 401 when invalid credentials are provided', () => {
-    const { sut } = makeSut()
+  test('Should return 401 when valid credentials are provided', () => {
+    const { sut, authUseCaseSpy } = makeSut()
+    authUseCaseSpy.accessToken = null
     const httpRequest = {
       body: {
-        email: generate(),
-        password: generate()
+        email: generateParam(),
+        password: generateParam()
       }
     }
     const httpResponse = sut.route(httpRequest)
@@ -82,12 +85,24 @@ describe('Login Router', () => {
     expect(httpResponse.body).toEqual(new UnauthorizedError())
   })
 
+  test('Should return 200 when invalid credentials are provided', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        email: generateParam(),
+        password: generateParam()
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
+  })
+
   test('Should return 500 if no AuthUseCase is provided', () => {
     const sut = new LoginRouter()
     const httpRequest = {
       body: {
-        email: generate(),
-        password: generate()
+        email: generateParam(),
+        password: generateParam()
       }
     }
     const httpResponse = sut.route(httpRequest)
@@ -98,8 +113,8 @@ describe('Login Router', () => {
     const sut = new LoginRouter({})
     const httpRequest = {
       body: {
-        email: generate(),
-        password: generate()
+        email: generateParam(),
+        password: generateParam()
       }
     }
     const httpResponse = sut.route(httpRequest)
