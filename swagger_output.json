@@ -1,0 +1,18 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "A Clean Node.js REST API",
+    "description": ""
+  },
+  "host": "localhost:4200",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {},
+  "definitions": {}
+}

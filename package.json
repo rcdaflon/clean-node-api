@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "swagger-autogen": "node swagger.js",
     "test": "jest --watchAll",
     "test:staged": "jest"
   },
@@ -25,5 +26,9 @@
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
     "standard": "^16.0.4"
-  }
+  },
+  "dependencies": {
+    "swagger-autogen": "^2.12.4",
+    "swagger-ui-express": "^4.1.6"
+}
 }
