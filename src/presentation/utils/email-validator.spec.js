@@ -1,4 +1,5 @@
 const validator = require('validator')
+const generateParam = require('../helpers/generateParam')
 
 class EmailValidator {
   isValid (email) {
@@ -21,6 +22,12 @@ describe('Email Validator', () => {
     validator.isEmailValid = false
     const sut = makeSut()
     const isEmailValid = sut.isValid('invalid_email@mail.com')
+    expect(isEmailValid).toBe(false)
+  })
+
+  test('Should call validator with correct email', () => {
+    const sut = makeSut()
+    const isEmailValid = sut.isValid(generateParam())
     expect(isEmailValid).toBe(false)
   })
 })
