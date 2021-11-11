@@ -12,7 +12,9 @@
     "test:ci": "npm test -- --coverage"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
   },
   "dependencies": {
     "swagger-autogen": "^2.12.4",
-    "swagger-ui-express": "^4.1.6"
-}
+    "swagger-ui-express": "^4.1.6",
+    "validator": "^13.7.0"
+  }
 }
