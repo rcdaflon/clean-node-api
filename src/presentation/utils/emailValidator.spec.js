@@ -1,4 +1,4 @@
-const EmailValidator = require('./email-validator')
+const EmailValidator = require('./emailValidator')
 const generateParam = require('../helpers/generateParam')
 const validator = require('validator')
 
