@@ -1,10 +1,7 @@
 /* globals describe, test, expect */
 const generateParam = require('../helpers/generateParam')
 const LoginRouter = require('./loginRouter')
-const MissingParamError = require('../helpers/missingParamError')
-const UnauthorizedError = require('../helpers/unauthorizedError')
-const ServerError = require('../helpers/serverError')
-const InvalidParamError = require('../helpers/invalidParamError')
+const { MissingParamError, UnauthorizedError, ServerError, InvalidParamError } = require('../errors')
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
