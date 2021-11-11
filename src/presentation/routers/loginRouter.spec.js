@@ -1,4 +1,3 @@
-/* globals describe, test, expect */
 const generateParam = require('../helpers/generateParam')
 const LoginRouter = require('./loginRouter')
 const { MissingParamError, UnauthorizedError, ServerError, InvalidParamError } = require('../errors')
