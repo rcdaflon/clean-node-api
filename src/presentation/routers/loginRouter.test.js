@@ -31,7 +31,7 @@ const makeEmailValidator = () => {
 }
 
 const makeEmailValidatorWithError = () => {
-  class EmailValidatorSpy { // classe mock
+  class EmailValidatorSpy {
     isValid () {
       throw new Error()
     }
