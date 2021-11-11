@@ -1,4 +1,4 @@
-const generateParam = require('../helpers/generateParam')
+const generateParam = require('../../utils/helpers/generateParam')
 const LoginRouter = require('./loginRouter')
 const { UnauthorizedError, ServerError } = require('../errors')
 const { MissingParamError, InvalidParamError } = require('../../utils/errors')
