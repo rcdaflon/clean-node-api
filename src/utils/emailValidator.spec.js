@@ -1,5 +1,5 @@
 const EmailValidator = require('./emailValidator')
-const generateParam = require('../presentation/helpers/generateParam')
+const generateParam = require('./helpers/generateParam')
 const validator = require('validator')
 
 const makeSut = () => {
