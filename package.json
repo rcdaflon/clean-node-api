@@ -7,7 +7,7 @@
     "swagger-autogen": "node swagger.js",
     "test": "jest --watch --silent --colors --noStackTrace",
     "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
-    "test:ci": "jest --coverage"
+    "test:ci": "jest --coverage --noStackTrace"
   },
   "standard": {
     "env": ["jest"]
