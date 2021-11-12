@@ -80,9 +80,15 @@ describe('Auth UseCase', () => {
   })
 
   test('Should throw if no LoadUserByEmailRepository is provided', async () => {
-    const sut = new AuthUseCase({})
+    const sut = new AuthUseCase()
     const promise = sut.auth(generateParam(), generateParam())
     expect(promise).rejects.toThrow(new MissingParamError('loadUserByEmailRepository'))
+  })
+
+  test('Should throw if no dependency is provided', async () => {
+    const sut = new AuthUseCase()
+    const promise = sut.auth(generateParam(), generateParam())
+    expect(promise).rejects.toThrow()
   })
 
   test('Should throw if LoadUserByEmailRepository has no load method', async () => {
